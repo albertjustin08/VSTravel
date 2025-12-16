@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Travel Now | VSTravel</title>
+    <link rel="stylesheet" href="globals.css" />
+    <link rel="stylesheet" href="travel_now.css" />
+</head>
+<body>
+    <div class="travel-now-page">
+        <header class="hero-header">
+            <div class="main-overlay">
+                <nav class="navbar">
+                    <a href="home_page.html" class="logo-area">
+                        <img class="vector" src="./assets/mdi_airplane-search.svg" alt="Logo" />
+                        <h1 class="logo-text">VSTravel</h1>
+                    </a>
+                    <div class="nav-menu">
+                        <a href="destination_page.html" class="nav-btn">Destination</a>
+                        <a href="about_us.html" class="nav-btn">About Us</a>
+                        <a href="contact_us.html" class="nav-btn">Contact Us</a>
+                        <div class="nav-item active">Travel Now</div>
+                    </div>
+                </nav>
+                <h2 class="page-title">Travel Now</h2>
+            </div>
+        </header>
+
+        <main class="container">
+            <div class="booking-layout">
+                <div class="image-section">
+                    <img class="main-image" src="./assets/home-china1.jpg" alt="Travel Illustration" />
+                </div>
+
+                <div class="form-section">
+                    <form id="travelForm" class="booking-form" novalidate>
+                        <div class="form-grid">
+                            <div class="input-group">
+                                <label for="fullName">Full Name</label>
+                                <input type="text" id="fullName" placeholder="Enter your name" />
+                                <div class="error-message" id="errorFullName"></div>
+                            </div>
+
+                            <div class="input-group">
+                                <label for="phoneNumber">Phone Number</label>
+                                <input type="tel" id="phoneNumber" placeholder="e.g. 08123456789" />
+                                <div class="error-message" id="errorPhoneNumber"></div>
+                            </div>
+
+                            <div class="input-group">
+                                <label for="departureDate">Departure Date</label>
+                                <input type="date" id="departureDate" />
+                                <div class="error-message" id="errorDepartureDate"></div>
+                            </div>
+
+                            <div class="input-group">
+                                <label for="returnDate">Return Date</label>
+                                <input type="date" id="returnDate" />
+                                <div class="error-message" id="errorReturnDate"></div>
+                            </div>
+
+                            <div class="input-group full-width">
+                                <label for="participants">Total Participants</label>
+                                <input type="number" id="participants" min="1" placeholder="Number of people" />
+                                <div class="error-message" id="errorParticipants"></div>
+                            </div>
+                        </div>
+
+                        <button type="submit" class="submit-btn">Submit Booking</button>
+                    </form>
+                    
+                    <img class="deco-img" src="./assets/image3.png" alt="Decoration" />
+                </div>
+            </div>
+        </main>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

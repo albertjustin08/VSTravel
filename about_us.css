@@ -1,0 +1,138 @@
+/* --- Hero Header & Background --- */
+.hero-header {
+    width: 100%;
+    height: 400px;
+    background-image: url('./assets/beach_dark_bg.png');
+    background-size: cover;
+    background-position: center;
+}
+
+.main-overlay {
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    padding: 20px 5%;
+    display: flex;
+    flex-direction: column;
+}
+
+/* --- Navbar Styling --- */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.logo-area {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
+}
+
+.logo-area .vector { width: 55px; }
+.logo-text { color: white; font-size: 36px; font-weight: 600; text-shadow: 2px 2px 4px rgba(0,0,0,0.3); }
+
+.nav-menu { display: flex; gap: 12px; flex-wrap: wrap; }
+
+.nav-btn, .nav-item {
+    padding: 10px 22px;
+    border-radius: 50px;
+    color: white;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 15px;
+    background: linear-gradient(180deg, #4c92ab 0%, #bbedff 100%);
+    transition: 0.3s;
+}
+
+.nav-item.active {
+    background: rgba(255, 255, 255, 0.2);
+    border: 1px solid white;
+}
+
+.page-title {
+    color: white;
+    font-size: clamp(40px, 7vw, 72px);
+    text-align: center;
+    margin: auto 0;
+    font-weight: 600;
+}
+
+/* --- Content Container --- */
+.content-container {
+    max-width: 1000px;
+    margin: 60px auto;
+    padding: 0 30px;
+}
+
+.about-section {
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+}
+
+.section-heading {
+    font-size: 32px;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 15px;
+    position: relative;
+    padding-bottom: 10px;
+}
+
+.section-heading::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 60px;
+    height: 4px;
+    background: #4c92ab;
+    border-radius: 2px;
+}
+
+.text-content {
+    font-size: 18px;
+    line-height: 1.8;
+    color: #444;
+    text-align: justify;
+}
+
+.section-divider {
+    margin: 60px 0;
+    border: 0;
+    height: 1px;
+    background: #ddd;
+}
+
+/* --- Footer CTA --- */
+.footer-cta {
+    text-align: center;
+    margin-bottom: 80px;
+}
+
+.cta-heading {
+    font-size: 32px;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.cta-sub {
+    font-size: 20px;
+    font-weight: 300;
+    color: #666;
+}
+
+/* --- Responsive Layout --- */
+@media screen and (max-width: 768px) {
+    .navbar { flex-direction: column; }
+    .nav-menu { justify-content: center; }
+    .content-container { margin: 40px auto; }
+    .text-content { font-size: 16px; text-align: left; }
+    .section-heading { font-size: 26px; text-align: center; }
+    .section-heading::after { left: 50%; transform: translateX(-50%); }
+    .footer-cta .cta-heading { font-size: 24px; }
+}

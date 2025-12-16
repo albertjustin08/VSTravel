@@ -1,0 +1,91 @@
+@import url("https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css");
+
+/* 1. Base Variables & Reset */
+:root {
+    --primary-blue: #4c92ab;
+    --light-blue: #bbedff;
+    --white: #ffffff;
+    --shadow: 0px 4px 10px rgba(0, 0, 0, 0.25);
+    --transition: all 0.3s ease;
+}
+
+* {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    box-sizing: border-box;
+}
+
+html, body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    /* Menggunakan min-height agar background selalu penuh meski konten sedikit */
+    min-height: 100%; 
+    overflow-x: hidden; /* Mencegah scroll ke samping yang merusak responsive */
+    scroll-behavior: smooth;
+}
+
+/* 2. Typography Defaults */
+body {
+    line-height: 1.5;
+    font-size: 16px;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+    transition: var(--transition);
+}
+
+button, .btn {
+    cursor: pointer;
+    border: none;
+    outline: none;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    display: block; /* Menghilangkan gap kecil di bawah gambar */
+}
+
+/* 3. Helper Classes (Utility) */
+.flex-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.responsive-text {
+    /* Font akan menyesuaikan ukuran layar secara otomatis */
+    font-size: clamp(1rem, 2.5vw, 2rem);
+}
+
+/* 4. Accessibility */
+button:focus-visible, a:focus-visible {
+    outline: 3px solid var(--primary-blue);
+    outline-offset: 2px;
+}
+
+/* 5. Mobile Optimizations (Responsive) */
+@media screen and (max-width: 768px) {
+    html {
+        font-size: 14px; /* Semua ukuran rem akan mengecil secara proporsional */
+    }
+
+    .hide-on-mobile {
+        display: none !important;
+    }
+
+    .center-on-mobile {
+        text-align: center;
+        justify-content: center;
+    }
+
+    /* Memastikan link navigasi mudah diklik dengan jari (Touch target) */
+    a, button {
+        min-height: 44px;
+        display: flex;
+        align-items: center;
+    }
+}
