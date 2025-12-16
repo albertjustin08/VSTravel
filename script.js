@@ -1,64 +1,78 @@
 document.addEventListener('DOMContentLoaded', function () {
-  const form = document.getElementById('travelForm');
+    const form = document.getElementById('travelForm');
 
-  form.addEventListener('submit', function (e) {
-    e.preventDefault();
+    // Cek apakah form ada di halaman ini (menghindari error di halaman lain)
+    if (!form) return;
 
-    let isValid = true;
+    form.addEventListener('submit', function (e) {
+        e.preventDefault();
 
-    const fullName = document.getElementById('fullName');
-    const phoneNumber = document.getElementById('phoneNumber');
-    const departureDate = document.getElementById('departureDate');
-    const returnDate = document.getElementById('returnDate');
-    const participants = document.getElementById('participants');
+        let isValid = true;
 
-    const errorFullName = document.getElementById('errorFullName');
-    const errorPhoneNumber = document.getElementById('errorPhoneNumber');
-    const errorDepartureDate = document.getElementById('errorDepartureDate');
-    const errorReturnDate = document.getElementById('errorReturnDate');
-    const errorParticipants = document.getElementById('errorParticipants');
+        const fields = {
+            fullName: document.getElementById('fullName'),
+            phoneNumber: document.getElementById('phoneNumber'),
+            departureDate: document.getElementById('departureDate'),
+            returnDate: document.getElementById('returnDate'),
+            participants: document.getElementById('participants')
+        };
 
-    [errorFullName, errorPhoneNumber, errorDepartureDate, errorReturnDate, errorParticipants]
-      .forEach(el => el.textContent = '');
+        const errors = {
+            fullName: document.getElementById('errorFullName'),
+            phoneNumber: document.getElementById('errorPhoneNumber'),
+            departureDate: document.getElementById('errorDepartureDate'),
+            returnDate: document.getElementById('errorReturnDate'),
+            participants: document.getElementById('errorParticipants')
+        };
 
-    if (!fullName.value.trim()) {
-      errorFullName.textContent = 'Full Name is required';
-      isValid = false;
-    }
+        // Reset semua pesan error
+        Object.values(errors).forEach(el => {
+            if (el) el.textContent = '';
+        });
 
-    const phoneRegex = /^[0-9]{10,15}$/;
-    if (!phoneNumber.value.trim()) {
-      errorPhoneNumber.textContent = 'Phone Number is required';
-      isValid = false;
-    } else if (!phoneRegex.test(phoneNumber.value)) {
-      errorPhoneNumber.textContent = 'Phone Number must be 10-15 digits';
-      isValid = false;
-    }
+        if (!fields.fullName.value.trim()) {
+            errors.fullName.textContent = 'Full Name is required';
+            isValid = false;
+        }
 
-    if (!departureDate.value) {
-      errorDepartureDate.textContent = 'Departure Date is required';
-      isValid = false;
-    }
+        const phoneRegex = /^[0-9]{10,15}$/;
+        const phoneValue = fields.phoneNumber.value.trim();
+        if (!phoneValue) {
+            errors.phoneNumber.textContent = 'Phone Number is required';
+            isValid = false;
+        } else if (!phoneRegex.test(phoneValue)) {
+            errors.phoneNumber.textContent = 'Phone Number must be 10-15 digits';
+            isValid = false;
+        }
 
-    if (!returnDate.value) {
-      errorReturnDate.textContent = 'Return Date is required';
-      isValid = false;
-    } else if (departureDate.value && returnDate.value < departureDate.value) {
-      errorReturnDate.textContent = 'Return Date must be after Departure Date';
-      isValid = false;
-    }
+        const today = new Date().toISOString().split('T')[0]; // Tanggal hari ini format YYYY-MM-DD
+        if (!fields.departureDate.value) {
+            errors.departureDate.textContent = 'Departure Date is required';
+            isValid = false;
+        } else if (fields.departureDate.value < today) {
+            errors.departureDate.textContent = 'Departure Date cannot be in the past';
+            isValid = false;
+        }
 
-    if (!participants.value) {
-      errorParticipants.textContent = 'Total Participants is required';
-      isValid = false;
-    } else if (parseInt(participants.value) < 1) {
-      errorParticipants.textContent = 'At least 1 participant is required';
-      isValid = false;
-    }
+        if (!fields.returnDate.value) {
+            errors.returnDate.textContent = 'Return Date is required';
+            isValid = false;
+        } else if (fields.departureDate.value && fields.returnDate.value < fields.departureDate.value) {
+            errors.returnDate.textContent = 'Return Date must be after Departure Date';
+            isValid = false;
+        }
 
-    if (isValid) {
-      alert('Form submitted successfully!');
-      form.reset();
-    }
-  });
+        if (!fields.participants.value) {
+            errors.participants.textContent = 'Total Participants is required';
+            isValid = false;
+        } else if (parseInt(fields.participants.value) < 1) {
+            errors.participants.textContent = 'At least 1 participant is required';
+            isValid = false;
+        }
+
+        if (isValid) {
+            alert(`Success! Thank you, ${fields.fullName.value}. Your travel booking has been submitted.`);
+            form.reset();
+        }
+    });
 });
